@@ -1,0 +1,6 @@
+.DS_Store
+*secrete_configs.py
+__pycache__/
+configs/openai_api_key.py
+datasets/
+outputs/
