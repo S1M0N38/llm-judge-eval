@@ -7,10 +7,10 @@ This repository contains code for our paper _Systematic Evaluation of LLM-as-a-J
 
 
 In this work, we systematically evaluate LLM-as-a-Judge methodology on two LLM alignment datasets (i.e ``TL;DR Summerization`` and ``HH-RLHF-Helpful``):
-* We define evaluation metrics with improved theoretical interpretability. 
-* We develop a framework to evaluate, compare, and visualize the reliability and alignment of LLM judges. \
-* We investigate the effect of diverse prompt templates on LLM-judge reliability. 
-* Our results indicate a significant impact of prompt templates on LLM judge performance, as well as a mediocre alignment level between the tested LLM judges and human evaluators.
+* we define evaluation metrics with improved theoretical interpretability. 
+* we develop a framework to evaluate, compare, and visualize the reliability and alignment of LLM judges.
+* we investigate the effect of diverse prompt templates on LLM-judge reliability. 
+* our results indicate a significant impact of prompt templates on LLM judge performance, as well as a mediocre alignment level between the tested LLM judges and human evaluators.
 
 ### Package installation
 Run the following command to install the required Python packages.
