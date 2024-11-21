@@ -27,19 +27,28 @@ Then set the Python path to the current directory.
 ```bash
 export PYTHONPATH=$PYTHONPATH:$(pwd)
 ```
+If you want to use use a different LLM provided exposing OpenAI compatible API, you can define the `OPENAI_API_KEY` environment variable. For example with server from LM Studio running on port 1234:
+
+```bash
+export OPENAI_BASE_URL="http://localhost:1234/v1"
+```
+
 
 ### Dataset Preprocessing
 
 Use the following command to prepare a formatted dataset for the LLM judge evaluation process.
 The default dir to save the processed dataset `./datasets/formatted_datasets`.
 The `dataset_id` identifies the formatted dataset, which is better kept consistent in the following steps.
+For example:
 
 ```bash
 python datasets/data_preprocessing.py \
---data-path datasets/raw_datasets/ \         # directory to save downloaded dataset from the original data source
---output-dir datasets/formatted_datasets/ \  # directory to save the processed datasets
---dataset-id summarize                       # summarize, hhrlhf_helpful
+--data-path datasets/raw_datasets/ \
+--output-dir datasets/formatted_datasets/ \
+--dataset-id summarize
 ```
+
+For more options, run `python datasets/data_preprocessing.py -h`.
 
 ### Add OpenAI Key
 
@@ -48,26 +57,28 @@ Add your own OpenAI key to `configs/openai_api_key.py` in order to evaluate LLM 
 ### Evaluate a Set of LLM Judges by Metric Computation and Visualization
 
 Use the example below to evaluate a set of LLM judges using the example dataset `dataset_id=summarize`.
-The templates are specified in `templates/dataset_id` folders.
+The templates are specified in `templates/dataset_id` folders. For example:
 
 ```bash
 python eval/eval_llm_judges.py \
---processed_data_path ./datasets/formatted_datasets/summarize/data.summarize.xxxx-xx-xx.jsonl \  # data path to the preprocessed dataset
---dataset_id summarize \  # dataset task (summarize or hhrlhf-helpful)
---split_size 200 \        # number of samples in each split
---num_splits 5 \          # number of splits
---self_consist_id 0 \     # index of split used to compute self-consistency results
---num_runs 5 \            # number of repetition to run the split to compute the self-consistency results
---num_eval -1 \           # number of evaluated samples in each split (-1 means all samples in the split)
---models "['gpt-4o-mini']" \  # list of LLM names
---templates "['chen-2023_summarize', 'guo-2024_summarize']" \  # list of templates
---extract_rule combine \  # rule to make binary output from the judging results ("combine", "chosen_reject" or "reject_chosen")
---temperature 0.1 \       # temperature parameter used for LLM inference
---num_workers 8 \         # number of processes to run judging results in parallel
---use_cache_samples \     # if use cached sampling results
---use_cache_results \     # if use cached computation and visualization results
---cache_dir ./outputs/    # directory to store the output results
+  --processed_data_path ./datasets/formatted_datasets/summarize/data.summarize.xxxx_xx_xx.jsonl \
+  --dataset_id summarize \
+  --split_size 200 \
+  --num_splits 5 \
+  --self_consist_id 0 \
+  --num_runs 5 \
+  --num_eval -1 \
+  --models "['gpt-4o-mini']" \
+  --templates "['chen-2023_summarize', 'guo-2024_summarize']" \
+  --extract_rule combine \
+  --temperature 0.1 \
+  --num_workers 8 \
+  --use_cache_samples \
+  --use_cache_results \
+  --cache_dir ./outputs/
 ```
+
+Run `python eval/eval_llm_judges.py -h` to see all the available options.
 
 ### Example Evaluation Results
 
