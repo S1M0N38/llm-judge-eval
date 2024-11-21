@@ -6,7 +6,7 @@ This repository contains code for our paper _Systematic Evaluation of LLM-as-a-J
 
 ![Evaluation Framework](./example_results/framework.jpg)
 
-In this work, we systematically evaluate LLM-as-a-Judge methodology on two LLM alignment datasets (i.e `TL;DR Summerization` and `HH-RLHF-Helpful`):
+In this work, we systematically evaluate LLM-as-a-Judge methodology on two LLM alignment datasets (i.e., `TL;DR Summarization` and `HH-RLHF-Helpful`):
 
 - we define evaluation metrics with improved theoretical interpretability.
 - we develop a framework to evaluate, compare, and visualize the reliability and alignment of LLM judges.
@@ -18,7 +18,7 @@ In this work, we systematically evaluate LLM-as-a-Judge methodology on two LLM a
 Run the following command to install the required Python packages.
 
 ```bash
-# The python environment has been tested on python=3.8, 3.8.19, 3.9.6
+# The Python environment has been tested on python=3.8, 3.8.19, 3.9.6
 pip install -r requirements.txt
 ```
 
@@ -27,7 +27,7 @@ Then set the Python path to the current directory.
 ```bash
 export PYTHONPATH=$PYTHONPATH:$(pwd)
 ```
-If you want to use use a different LLM provided exposing OpenAI compatible API, you can define the `OPENAI_API_KEY` environment variable. For example with server from LM Studio running on port 1234:
+If you want to use a different LLM provided exposing OpenAI compatible API, you can define the `OPENAI_API_KEY` environment variable. For example with server from LM Studio running on port 1234:
 
 ```bash
 export OPENAI_BASE_URL="http://localhost:1234/v1"
@@ -37,7 +37,7 @@ export OPENAI_BASE_URL="http://localhost:1234/v1"
 ### Dataset Preprocessing
 
 Use the following command to prepare a formatted dataset for the LLM judge evaluation process.
-The default dir to save the processed dataset `./datasets/formatted_datasets`.
+The default dir to save the processed dataset is `./datasets/formatted_datasets`.
 The `dataset_id` identifies the formatted dataset, which is better kept consistent in the following steps.
 For example:
 
